@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicobailon/pi-web-access/refs/heads/main/web-search.schema.json",
+  "provider": "auto",
+  "workflow": "summary-review",
+  "allowBrowserCookies": false,
+  "curatorTimeoutSeconds": 20,
+  "githubClone": {
+    "enabled": true,
+    "maxRepoSizeMB": 350,
+    "cloneTimeoutSeconds": 30,
+    "clonePath": "/tmp/pi-github-repos"
+  },
+  "youtube": {
+    "enabled": true
+  },
+  "video": {
+    "enabled": true,
+    "maxSizeMB": 50
+  },
+  "_comment": "Add API keys below as needed. Or set env vars: EXA_API_KEY, GEMINI_API_KEY, PERPLEXITY_API_KEY"
+}

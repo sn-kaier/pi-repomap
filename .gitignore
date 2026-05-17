@@ -1,0 +1,5 @@
+node_modules/
+vendor/
+.pi/
+.fallow/
+package-lock.json

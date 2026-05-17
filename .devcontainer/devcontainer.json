@@ -1,0 +1,24 @@
+{
+  "name": "Repomap Sandbox",
+  "build": { "dockerfile": "Dockerfile" },
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  },
+  "remoteUser": "node",
+  "postCreateCommand": "cd /workspaces/${localWorkspaceFolderBasename} && bun install -g @earendil-works/pi-coding-agent@latest && bun install",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/pi-agent/pi-settings.json,target=/home/node/.pi/agent/settings.json,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.devcontainer/pi-agent/models.json,target=/home/node/.pi/agent/models.json,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.devcontainer/pi-agent/web-search.json,target=/home/node/.pi/web-search.json,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.devcontainer/skills,target=/home/node/.pi/agent/skills,type=bind",
+    "source=agent-vault,target=/workspaces/secrets,type=volume"
+  ],
+  "containerEnv": {
+    "OPENROUTER_API_KEY": "${localEnv:OPENROUTER_API_KEY}",
+    "EXA_API_KEY": "${localEnv:EXA_API_KEY}",
+    "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}",
+    "PERPLEXITY_API_KEY": "${localEnv:PERPLEXITY_API_KEY}"
+  }
+}

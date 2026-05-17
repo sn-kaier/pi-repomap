@@ -1,0 +1,71 @@
+{
+  "name": "@sn-kaier/pi-repomap",
+  "version": "0.1.0",
+  "description": "Pi extension for generating structured, ranked repository maps using web-tree-sitter",
+  "author": "Simon Kaier",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sn-kaier/pi-repomap.git"
+  },
+  "keywords": [
+    "pi-package",
+    "pi",
+    "pi-coding-agent",
+    "repomap",
+    "tree-sitter",
+    "repository-map"
+  ],
+  "files": [
+    "src/**/*.ts",
+    "vendor/",
+    "README.md"
+  ],
+  "scripts": {
+    "copy-wasm": "node scripts/copy-wasm.mjs",
+    "postinstall": "node scripts/copy-wasm.mjs",
+    "pretest": "node scripts/copy-wasm.mjs",
+    "test": "node --experimental-strip-types --test 'test/**/*.test.ts'",
+    "test:unit": "node --experimental-strip-types --test 'test/unit/*.test.ts'",
+    "test:integration": "node --experimental-strip-types --test 'test/integration/*.test.ts'"
+  },
+  "pi": {
+    "extensions": [
+      "./src/extension/index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-agent-core": {
+      "optional": true
+    },
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@vscode/tree-sitter-wasm": "^0.3.1",
+    "ignore": "^7.0.3",
+    "typebox": "^1.1.24",
+    "web-tree-sitter": "^0.26.8"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-agent-core": "^0.74.0",
+    "@earendil-works/pi-ai": "^0.74.0",
+    "@earendil-works/pi-coding-agent": "^0.74.0",
+    "@earendil-works/pi-tui": "^0.74.0",
+    "@types/node": "^22.0.0"
+  }
+}
