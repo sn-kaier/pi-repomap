@@ -61,11 +61,11 @@ Examples:
       _id: string,
       params: RepomapParamsType,
       _signal: AbortSignal | undefined,
-      onUpdate: ((result: { content?: string; details?: Record<string, unknown> }) => void) | undefined
+      onUpdate: ((result: { content: { type: "text"; text: string }[]; details?: Record<string, unknown> }) => void) | undefined
     ) {
       try {
         if (onUpdate) {
-          onUpdate({ content: "Scanning files..." });
+          onUpdate({ content: [{ type: "text", text: "Scanning files..." }] });
         }
 
         const result = await generateRepomap({
@@ -78,7 +78,7 @@ Examples:
 
         if (!result.map) {
           return {
-            content: "(empty — no source files found or parsed)",
+            content: [{ type: "text", text: "(empty — no source files found or parsed)" }],
             details: { fileCount: 0, tagCount: 0, estimatedTokens: 0 },
           };
         }
@@ -86,7 +86,7 @@ Examples:
         const tokenEstimate = Math.ceil(result.map.length / 3.5);
 
         return {
-          content: result.map,
+          content: [{ type: "text", text: result.map }],
           details: {
             fileCount: result.fileCount,
             tagCount: result.tagCount,
@@ -97,7 +97,7 @@ Examples:
         const message = err instanceof Error ? err.message : String(err);
         console.error(`[repomap] Error: ${message}`);
         return {
-          content: `Error generating repo map: ${message}`,
+          content: [{ type: "text", text: `Error generating repo map: ${message}` }],
           details: { fileCount: 0, tagCount: 0, estimatedTokens: 0 },
         };
       }

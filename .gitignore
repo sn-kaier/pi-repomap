@@ -3,3 +3,4 @@ vendor/
 .pi/
 .fallow/
 package-lock.json
+.aider*
